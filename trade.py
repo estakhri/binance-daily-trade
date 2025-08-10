@@ -12,7 +12,7 @@ def get_lot_size(client, symbol):
 
 def adjust_quantity(quantity, step_size):
     precision = int(round(-math.log(step_size, 10), 0))
-    return float(f"{math.floor(quantity / step_size) * step_size:.{precision}f}")
+    return float(f"{math.ceil(quantity / step_size) * step_size:.{precision}f}")
 
 def buy_btc(client: Client, usdt_amount=10):
     try:
