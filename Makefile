@@ -103,6 +103,7 @@ docker-run: docker-build ## Build and run Docker container
 	docker run -d \
 		--name $(CONTAINER_NAME) \
 		--env-file .env \
+		--restart=unless-stopped \
 		$(DOCKER_IMAGE_NAME)
 	@echo "$(GREEN)Container started! Use 'make docker-logs' to view logs.$(NC)"
 
