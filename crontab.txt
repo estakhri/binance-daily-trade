@@ -1,1 +1,1 @@
-0 8 * * * python3 /app/bot.py >> /var/log/cron.log 2>&1
+0 8 * * * /usr/local/bin/python /app/bot.py >> /var/log/cron.log 2>&1
