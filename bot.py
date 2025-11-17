@@ -23,6 +23,8 @@ def main():
 
     if rsi_daily < 70 and rsi_weekly < 70:
         send_telegram("✅ RSI < 70 on both timeframes. Buying BTC for $10...")
+        if rsi_daily < 30:
+            TRADE_AMOUNT=TRADE_AMOUNT*2
         buy_btc(client, TRADE_AMOUNT)
     else:
         send_telegram("⛔ RSI condition not met. Skipping buy.")
