@@ -14,6 +14,7 @@ TRADE_AMOUNT = float(os.getenv("TRADE_AMOUNT", 10))
 client = Client(API_KEY, API_SECRET)
 
 def main():
+    global TRADE_AMOUNT
     rsi_daily = get_rsi(client, interval="1d")
     rsi_weekly = get_rsi(client, interval="1w")
 
@@ -22,10 +23,9 @@ def main():
     send_telegram(msg)
 
     if rsi_daily < 70 and rsi_weekly < 70:
-        trade_amount=TRADE_AMOUNT
         send_telegram("✅ RSI < 70 on both timeframes. Buying BTC for $10...")
         if rsi_daily < 30:
-            trade_amount=trade_amount*2
+            TRADE_AMOUNT=TRADE_AMOUNT*2
         buy_btc(client, trade_amount)
     else:
         send_telegram("⛔ RSI condition not met. Skipping buy.")
